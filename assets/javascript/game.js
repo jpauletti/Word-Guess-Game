@@ -67,15 +67,15 @@ function startGame() {
 var chosenWord = words[Math.floor(Math.random()*words.length)].song.toLowerCase();
 
 // reset remainingGuesses and  lettersGuessed
-function reset() {
-    // reset guesses
-    remainingGuesses = 12;
-    // show new guesses left on page
-    remainingGuessesText.textContent = remainingGuesses;
-    // reset letters guessed
-    lettersGuessed = [];
-    lettersGuessedText.innerHTML = '';
-}
+// function reset() {
+//     // reset guesses
+//     remainingGuesses = 12;
+//     // show new guesses left on page
+//     remainingGuessesText.textContent = remainingGuesses;
+//     // reset letters guessed
+//     lettersGuessed = [];
+//     lettersGuessedText.innerHTML = '';
+// }
 
 // show letter if it's in the word
 function revealLetter() {
@@ -102,13 +102,13 @@ function updateGuesses() {
 // if fail - reveal all letters
 function endGame() {
     console.log('end game you lost');
-    for (i = 0; i < chosenWord.length; i++) {
+    for (var i = 0; i < chosenWord.length; i++) {
         // reveal all letters
-        document.getElementById(i.toString()).textContent = chosenWord[i];
-        chosenWordText.style.color = 'red';
+        document.getElementById(i.toString()).textContent = chosenWord[i];   
     }
+    chosenWordText.style.color = 'red';
     playAgainButton.classList.add('show');
-    // playAgainButton.addEventListener('click', startGame());
+    playAgainButton.addEventListener('click', startGame);
 }
 
 // if win
@@ -118,16 +118,11 @@ function youWin() {
     winsText.textContent = wins;
     chosenWordText.style.color = 'green';
     playAgainButton.classList.add('show');
-    // playAgainButton.addEventListener('click', startGame);
+    playAgainButton.addEventListener('click', startGame);
 }
 
 
 startGame();
-
-// for (var i = 0; i < chosenWord.length; i++) {
-//     chosenWordText.innerHTML = chosenWordText.innerHTML + '<li id="' + i + '"></li>'
-// }
-
 
 
 // listen for keyup
