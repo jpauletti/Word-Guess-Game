@@ -1,0 +1,80 @@
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Tillana', cursive;
+}
+
+h1 {
+    text-align: center;
+    font-size: 60px;
+}
+
+img {
+    width: 500px;
+}
+
+
+.title {
+    padding: 20px;
+    margin: 20px;
+}
+
+#chosen-word {
+    text-transform: uppercase;
+    font-size: 30px;
+    /* letter-spacing: 18px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 0;
+    /* background: linear-gradient(white 93%, black) 2px; */
+
+    /* background: repeating-linear-gradient(90deg, 
+    dimgrey 0, dimgrey 1ch, 
+    transparent 0, transparent 1ch + .5*1ch) 
+    0 100%/ #{(7*(1ch + .5*1ch)) - (.5*1ch)} 2px no-repeat; */
+}
+
+#chosen-word > span {
+    margin: 0 10px;
+    /* text-decoration: underline; */
+}
+
+/* #chosen-word > span:after {
+    border-bottom: 2px solid black;
+} */
+
+#letters-guessed > span {
+    margin: 0 10px;
+    text-transform: uppercase;
+}
+
+.underline {
+    border-bottom: 2px solid black;
+}
+
+
+li {
+    list-style-type: none;
+    display: inline-block;
+    margin: 0 10px;
+    border-bottom: 2px solid black;
+    width: 28px;
+    height: 47px;
+    line-height: 47px;
+}
+
+input {
+    margin: 0 auto;
+}
+
+#play-again {
+    position: absolute;
+    top: -120px;
+    left: 0;
+    opacity: 0;
+    transition: all 0.25s ease-in-out;
+}
+
+.show {
+    position: static !important;
+    opacity: 1 !important;
+}
