@@ -26,13 +26,16 @@ var words = [
 var validGuesses = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
 // array to push in letters that have been guessed
+var chosenWord;
+var chosenArtist;
 var lettersGuessed = [];
 var wins = 0;
 var remainingGuesses = 12;
 
 // DOM variables
 var chosenWordText = document.getElementById('chosen-word');
-var artistText = document.getElementById('artist');
+var chosenArtistText = document.getElementById('artist');
+var leftImage = document.getElementById('left-image');
 var lettersGuessedText = document.getElementById('letters-guessed');
 var remainingGuessesText = document.getElementById('remaining-guesses');
 var winsText = document.getElementById('wins');
@@ -58,6 +61,12 @@ function startGame() {
 
     //clear out current letters
     chosenWordText.innerHTML = '';
+
+    // clear out artists
+    chosenArtistText.textContent = '';
+
+    // reset image
+    leftImage.src = 'assets/images/billboard-hot-100.jpg';
 
     // start with blank <li>s
     for (var i = 0; i < chosenWord.length; i++) {
@@ -94,7 +103,23 @@ function endGame() {
         // reveal all letters
         document.getElementById(i.toString()).textContent = chosenWord[i];   
     }
+    // make text red
     chosenWordText.style.color = 'red';
+
+    // find artist that matches the chosenWord
+    for (var i = 0; i < words.length; i++) {
+        if (words[i].song.toLowerCase() === chosenWord) {
+            chosenArtist = words[i].artist;
+            console.log(chosenArtist);
+        }
+    }
+    // show artist text
+    chosenArtistText.textContent = 'by ' + chosenArtist;
+
+    // change to artist image
+    leftImage.src = 'assets/images/' + chosenWord + '.jpg';
+
+    // show button, restart game when clicked
     playAgainButton.classList.add('show');
     playAgainButton.addEventListener('click', startGame);
 }
@@ -102,10 +127,27 @@ function endGame() {
 // if win
 function youWin() {
     console.log('you win');
+    // add 1 to wins
     wins = wins + 1;
+    // update wins on page
     winsText.textContent = wins;
+    //make text green
     chosenWordText.style.color = 'green';
-    // artistText = words[i].artist; // - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+    // find artist that matches the chosenWord
+    for (var i = 0; i < words.length; i++) {
+        if (words[i].song.toLowerCase() === chosenWord) {
+            chosenArtist = words[i].artist;
+            console.log(chosenArtist);
+        }
+    }
+    // show artist text
+    chosenArtistText.textContent = 'by ' + chosenArtist;
+
+    // change to artist image
+    leftImage.src = 'assets/images/' + chosenWord + '.jpg';
+
+    // show button, restart game when clicked
     playAgainButton.classList.add('show');
     playAgainButton.addEventListener('click', startGame);
 }
