@@ -67,6 +67,8 @@ function startGame() {
 
     // reset image
     leftImage.src = 'assets/images/billboard-hot-100.jpg';
+    // reset image width
+    leftImage.style.width = '500px';
 
     // start with blank <li>s
     for (var i = 0; i < chosenWord.length; i++) {
@@ -118,6 +120,8 @@ function endGame() {
 
     // change to artist image
     leftImage.src = 'assets/images/' + chosenWord + '.jpg';
+    // shrink image width to fit square image
+    leftImage.style.width = '350px';
 
     // show button, restart game when clicked
     playAgainButton.classList.add('show');
@@ -146,6 +150,8 @@ function youWin() {
 
     // change to artist image
     leftImage.src = 'assets/images/' + chosenWord + '.jpg';
+    // shrink image width to fit square image
+    leftImage.style.width = '350px';
 
     // show button, restart game when clicked
     playAgainButton.classList.add('show');
