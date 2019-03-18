@@ -78,3 +78,8 @@ input {
     position: static !important;
     opacity: 1 !important;
 }
+
+#artist {
+    font-size: 26px;
+    font-style: italic;
+}

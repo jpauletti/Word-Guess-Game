@@ -32,13 +32,15 @@ var remainingGuesses = 12;
 
 // DOM variables
 var chosenWordText = document.getElementById('chosen-word');
+var artistText = document.getElementById('artist');
 var lettersGuessedText = document.getElementById('letters-guessed');
 var remainingGuessesText = document.getElementById('remaining-guesses');
 var winsText = document.getElementById('wins');
 var playAgainButton = document.getElementById('play-again');
 
-// start game - choose random word, don't show letters
+// start game 
 function startGame() {
+    // get random song name from words array
     chosenWord = words[Math.floor(Math.random() * words.length)].song.toLowerCase();
     playAgainButton.classList.remove('show');
     console.log('game started');
@@ -62,20 +64,6 @@ function startGame() {
         chosenWordText.innerHTML = chosenWordText.innerHTML + '<li id="' + i + '"></li>'
     }   
 }
-
-// get random song name from words array
-var chosenWord = words[Math.floor(Math.random()*words.length)].song.toLowerCase();
-
-// reset remainingGuesses and  lettersGuessed
-// function reset() {
-//     // reset guesses
-//     remainingGuesses = 12;
-//     // show new guesses left on page
-//     remainingGuessesText.textContent = remainingGuesses;
-//     // reset letters guessed
-//     lettersGuessed = [];
-//     lettersGuessedText.innerHTML = '';
-// }
 
 // show letter if it's in the word
 function revealLetter() {
@@ -117,9 +105,14 @@ function youWin() {
     wins = wins + 1;
     winsText.textContent = wins;
     chosenWordText.style.color = 'green';
+    // artistText = words[i].artist; // - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
     playAgainButton.classList.add('show');
     playAgainButton.addEventListener('click', startGame);
 }
+
+
+
+
 
 
 startGame();
@@ -187,46 +180,6 @@ if (remainingGuesses > -1) {
 
         }
 
-
-        // // subtract one guess
-        // remainingGuesses = remainingGuesses - 1;
-        // // show new guesses left on page
-        // remainingGuessesText.textContent = remainingGuesses;
-
-        // if (remainingGuesses === 0) {
-        //     for (i = 0; i < chosenWord.length; i++) {
-        //         // reveal all letters
-        //         document.getElementById(i.toString()).textContent = chosenWord[i];
-        //         chosenWordText.style.color = 'red';
-        //     }
-        // }
-
-        // if (remainingGuesses === 0) {
-        //     for (i = 0; i < chosenWord.length; i++) {
-        //         // reveal all letters
-        //         document.getElementById(i.toString()).textContent = chosenWord[i];
-        //         chosenWordText.style.color = 'red';
-        //     }
-        // }
-
-
-
     }
 }
-
-
-
-
-    // choose another word, reset game
-
-
-
-
-// runs out of guesses - show all, make them red
-
-// play again button
-    // pick new word, clear content for each li
-
-
-
 
