@@ -43,6 +43,14 @@ var words = [
     {
         song: 'Without Me',
         artist: 'Halsey'
+    },
+    {
+        song: 'High Hopes',
+        artist: 'Panic! At The Disco'
+    },
+    {
+        song: 'Bury A Friend',
+        artist: 'Billie Eilish'
     }
 ];
 
@@ -221,6 +229,7 @@ if (remainingGuesses > -1) {
                 var emptyLis = 0;
                 for (var i = 0; i < chosenWord.length; i++) {
                     // get length of strings in each <li>
+                    var content = document.getElementById(i.toString()).textContent;
                     var length = document.getElementById(i.toString()).textContent.length;
                     //if empty, 
                     if (length === 0) {
@@ -228,7 +237,9 @@ if (remainingGuesses > -1) {
                     }
                 }
 
-                if ((emptyLis === 0 && remainingGuesses > 0) || (emptyLis === 1 && chosenWord.indexOf(' ') > -1 && remainingGuesses > 0)) {
+                // if no empty <li>s OR if 1 empty <li> but word has a space in it
+                if ((emptyLis === 0 && remainingGuesses > 0) || (emptyLis === 1 && chosenWord.indexOf(' ') > -1 && remainingGuesses > 0) || (emptyLis === 2 && chosenWord.indexOf(' ') > -1 && remainingGuesses > 0)) {
+                    console.log(chosenWord.indexOf(' '));
                     youWin();
                 }
 
