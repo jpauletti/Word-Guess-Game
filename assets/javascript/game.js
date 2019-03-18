@@ -99,7 +99,7 @@ function updateGuesses() {
 }
 
 // if fail - reveal all letters
-function endGame() {
+function youLose() {
     console.log('end game you lost');
     for (var i = 0; i < chosenWord.length; i++) {
         // reveal all letters
@@ -108,24 +108,7 @@ function endGame() {
     // make text red
     chosenWordText.style.color = 'red';
 
-    // find artist that matches the chosenWord
-    for (var i = 0; i < words.length; i++) {
-        if (words[i].song.toLowerCase() === chosenWord) {
-            chosenArtist = words[i].artist;
-            console.log(chosenArtist);
-        }
-    }
-    // show artist text
-    chosenArtistText.textContent = 'by ' + chosenArtist;
-
-    // change to artist image
-    leftImage.src = 'assets/images/' + chosenWord + '.jpg';
-    // shrink image width to fit square image
-    leftImage.style.width = '350px';
-
-    // show button, restart game when clicked
-    playAgainButton.classList.add('show');
-    playAgainButton.addEventListener('click', startGame);
+    endGame();
 }
 
 // if win
@@ -138,6 +121,12 @@ function youWin() {
     //make text green
     chosenWordText.style.color = 'green';
 
+    endGame();
+}
+
+
+// universal end game functions
+function endGame() {
     // find artist that matches the chosenWord
     for (var i = 0; i < words.length; i++) {
         if (words[i].song.toLowerCase() === chosenWord) {
@@ -221,7 +210,7 @@ if (remainingGuesses > -1) {
                 }
 
                 if (remainingGuesses === 0) {
-                    endGame();
+                    youLose();
                 }
 
             }
