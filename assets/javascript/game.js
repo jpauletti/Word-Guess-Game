@@ -19,6 +19,30 @@ var words = [
     {
         song: 'Sunflower',
         artist: 'Post Malone & Swae Lee'
+    },
+    {
+        song: 'Shallow',
+        artist: 'Lady Gaga & Bradley Cooper'
+    },
+    {
+        song: 'Wow',
+        artist: 'Post Malone'
+    },
+    {
+        song: 'Tequila',
+        artist: 'Dan + Shay'
+    },
+    {
+        song: 'Imagine',
+        artist: 'Ariana Grande'
+    },
+    {
+        song: 'Bloodline',
+        artist: 'Ariana Grande'
+    },
+    {
+        song: 'Without Me',
+        artist: 'Halsey'
     }
 ];
 
@@ -72,7 +96,13 @@ function startGame() {
 
     // start with blank <li>s
     for (var i = 0; i < chosenWord.length; i++) {
-        chosenWordText.innerHTML = chosenWordText.innerHTML + '<li id="' + i + '"></li>'
+        // chosenWordText.innerHTML = chosenWordText.innerHTML + '<li id="' + i + '"></li>'
+        // if chosenWord[i]=== ' '
+        if (chosenWord[i] === ' ') {
+            chosenWordText.innerHTML = chosenWordText.innerHTML + '<li id="' + i + '" style="border:none;"></li>'
+        } else {
+            chosenWordText.innerHTML = chosenWordText.innerHTML + '<li id="' + i + '"></li>'
+        }
     }   
 }
 
@@ -198,7 +228,7 @@ if (remainingGuesses > -1) {
                     }
                 }
 
-                if (emptyLis === 0 && remainingGuesses > 0) {
+                if ((emptyLis === 0 && remainingGuesses > 0) || (emptyLis === 1 && chosenWord.indexOf(' ') > -1 && remainingGuesses > 0)) {
                     youWin();
                 }
 
