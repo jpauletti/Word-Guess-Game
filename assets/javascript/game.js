@@ -237,8 +237,16 @@ if (remainingGuesses > -1) {
                     }
                 }
 
-                // if no empty <li>s OR if 1 empty <li> but word has a space in it
-                if ((emptyLis === 0 && remainingGuesses > 0) || (emptyLis === 1 && chosenWord.indexOf(' ') > -1 && remainingGuesses > 0) || (emptyLis === 2 && chosenWord.indexOf(' ') > -1 && remainingGuesses > 0)) {
+                // find spaces in word & their indexes
+                var indexes = [];
+                for (var i = 0; i < chosenWord.length; i++) {
+                    if (chosenWord[i] === ' ') {
+                        indexes.push(i);
+                    }
+                }
+                
+                // if no empty <li>s OR if 1 empty <li> but word has a space in it, or 2 empty <li>s but word has a space in it
+                if ((emptyLis === 0 && remainingGuesses > 0) || (emptyLis === 1 && chosenWord.indexOf(' ') > -1 && remainingGuesses > 0) || (emptyLis === 2 && indexes.length === 2 && remainingGuesses > 0)) {
                     console.log(chosenWord.indexOf(' '));
                     youWin();
                 }
