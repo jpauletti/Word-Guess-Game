@@ -2,28 +2,6 @@ var chosenSong;
 var chosenArtist;
 var chosenSongAudio;
 
-
-
-
-
-
-
-// var body = document.querySelector('body');
-// var audio = document.createElement('audio');
-// body.appendChild(audio);
-
-
-// var audioParent = document.querySelector('audio');
-// audioParent.setAttribute('src', 'assets/audio/bloodline.mp3');
-// // audioParent.play();
-
-
-
-
-
-
-
-
 var game = {
     validGuesses: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
 
@@ -120,10 +98,10 @@ var game = {
 
 
 
-            // pause song if playing
+            // pause song if one is playing
             if (chosenSongAudio != undefined) {
                 chosenSongAudio.pause();
-                // reset to beggining of song if it's been played before
+                // reset to beginning of song if it's been played before
                 chosenSongAudio.currentTime = 0;
             }
 
@@ -217,15 +195,26 @@ var game = {
         // if # of empty <li>s = number of spaces in word, you win
         if (emptyLis === spaceIndexes.length && game.remainingGuesses > 0) {
             console.log(emptyLis + ' ' + spaceIndexes.length);
+            console.log('all letters guessed, guesses remaining');
+            game.updateGuesses();
             game.youWin();
+        } else {
+            if (game.remainingGuesses > 1) {
+                game.updateGuesses();
+            } else if (game.remainingGuesses === 1) {
+                console.log('guess = 1');
+                game.updateGuesses();
+                game.youLose();
+            } else if (game.remainingGuesses === 0) {
+                game.youLose();
+            }
         }
 
-        // don't let user keep guessing when remainingGuesses = 0
-        if (game.remainingGuesses > 0) {
-            game.updateGuesses();
-        } else {
-            game.youLose();
-        }
+
+        // check if all letters are guessed
+            // if yes, are there > 0 guesses remaining?
+                // yes = win, no = lose
+            // if no
 
     },
 
@@ -265,13 +254,6 @@ var game = {
                 chosenSongAudio.play();
             }
         }
-        // var audio = {
-        //     happier: new Audio('assets/audio/happier.mp3'),
-        //     bloodline: new Audio('assets/audio/bloodline.mp3'),
-        //     closeToMe: new Audio('assets/audio/closeToMe.mp3')
-
-        // };
-        // audio[chosenSongAudio].play();
 
         // find artist that matches the chosenSong
         for (var i = 0; i < game.songs.length; i++) {
@@ -305,7 +287,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // listen for keyup
     if (game.remainingGuesses > -1) {
         document.onkeyup = function (event) {
-            // keyData.audio.sound.play();
 
             var letter = event.key.toLowerCase();
             console.log(letter);
