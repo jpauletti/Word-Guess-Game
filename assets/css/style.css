@@ -5,6 +5,8 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
     text-align: center;
     font-size: 60px;
+    /* font-weight: bold; */
+    color: #a0268d;
 }
 
 img {
@@ -13,11 +15,11 @@ img {
 
 
 .title {
-    padding: 20px;
-    margin: 20px;
+    padding: 20px /* 20px 0 */;
+    margin: 20px /* 20px 0 */;
 }
 
-#chosen-word {
+#chosen-word /* ul */ {
     text-transform: uppercase;
     font-size: 30px;
     /* letter-spacing: 18px; */
@@ -25,22 +27,11 @@ img {
     align-items: center;
     justify-content: center;
     padding-left: 0;
-    /* background: linear-gradient(white 93%, black) 2px; */
-
-    /* background: repeating-linear-gradient(90deg, 
-    dimgrey 0, dimgrey 1ch, 
-    transparent 0, transparent 1ch + .5*1ch) 
-    0 100%/ #{(7*(1ch + .5*1ch)) - (.5*1ch)} 2px no-repeat; */
 }
 
-#chosen-word > span {
-    margin: 0 10px;
-    /* text-decoration: underline; */
+#letters-guessed {
+    height: 24px;
 }
-
-/* #chosen-word > span:after {
-    border-bottom: 2px solid black;
-} */
 
 #letters-guessed > span {
     margin: 0 10px;
@@ -55,7 +46,7 @@ img {
 li {
     list-style-type: none;
     display: inline-block;
-    margin: 0 10px;
+    margin: 0 5px;
     border-bottom: 2px solid black;
     width: 28px;
     height: 47px;
@@ -83,4 +74,27 @@ input {
     font-size: 26px;
     font-style: italic;
     margin-bottom: 1.5rem;
+}
+
+#left-image {
+    width: ;
+}
+
+
+
+
+@media screen and (max-width: 480px) {
+    li {
+        width: 20px;
+        font-size: 25px;
+    }
+
+    .title {
+        padding: 0;
+        margin-bottom: 0;
+    }
+
+    .margin-mobile {
+        margin-top: 10px;
+    }
 }

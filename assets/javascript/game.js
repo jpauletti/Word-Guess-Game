@@ -169,7 +169,6 @@ function endGame() {
     for (var i = 0; i < words.length; i++) {
         if (words[i].song.toLowerCase() === chosenWord) {
             chosenArtist = words[i].artist;
-            console.log(chosenArtist);
         }
     }
     // show artist text
@@ -238,20 +237,18 @@ if (remainingGuesses > -1) {
                 }
 
                 // find spaces in word & their indexes
-                var indexes = [];
+                var spaceIndexes = [];
                 for (var i = 0; i < chosenWord.length; i++) {
                     if (chosenWord[i] === ' ') {
-                        indexes.push(i);
+                        spaceIndexes.push(i);
                     }
                 }
                 
-                // if no empty <li>s OR if 1 empty <li> but word has a space in it, or 2 empty <li>s but word has a space in it
-                if ((emptyLis === 0 && remainingGuesses > 0) || (emptyLis === 1 && chosenWord.indexOf(' ') > -1 && remainingGuesses > 0) || (emptyLis === 2 && indexes.length === 2 && remainingGuesses > 0)) {
-                    console.log(chosenWord.indexOf(' '));
+                // if # of empty <li>s = number of spaces in word, you win
+                if (emptyLis === spaceIndexes.length && remainingGuesses > 0) {
+                    console.log(emptyLis + ' ' + spaceIndexes.length);
                     youWin();
                 }
-
-                // playAgainButton.addEventListener('click', startGame());
 
                 // don't let user keep guessing when remainingGuesses = 0
                 if (remainingGuesses > 0) {
