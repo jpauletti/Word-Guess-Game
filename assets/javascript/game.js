@@ -1,6 +1,6 @@
-var chosenSong;
-var chosenArtist;
-var chosenSongAudio;
+// var chosenSong;
+// var chosenArtist;
+// var chosenSongAudio;
 
 var game = {
     validGuesses: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
@@ -69,14 +69,15 @@ var game = {
         }
     ],
 
-    // var chosenSong: ,
-    // var chosenArtist: ,
+    chosenSong: "",
+    chosenArtist: "",
+    chosenSongAudio: "",
     lettersGuessed: [],
     wins: 0,
     remainingGuesses: 12,
 
     // DOM variables
-    chosenSongText: document.getElementById('chosen-word'),
+    chosenSongText: document.getElementById('chosen-song'),
     chosenArtistText: document.getElementById('artist'),
     leftImage: document.getElementById('left-image'),
     lettersGuessedText: document.getElementById('letters-guessed'),
@@ -86,27 +87,15 @@ var game = {
 
     // start game 
     startGame: function () {
-        game.playSong();
-        // find chosenSong, and play its audio
-        // for (var i = 0; i < game.songs.length; i++) {
-        //     if (game.songs[i].song.toLowerCase() === chosenSong) {
-        //         chosenSongAudio = game.songs[i].audio;
-        //         console.log(chosenSongAudio);
-        //         chosenSongAudio.play();
-        //     }
-        // }
-
-
-
             // pause song if one is playing
-            if (chosenSongAudio != undefined) {
-                chosenSongAudio.pause();
+            if (game.chosenSongAudio != "") {
+                game.chosenSongAudio.pause();
                 // reset to beginning of song if it's been played before
-                chosenSongAudio.currentTime = 0;
+                game.chosenSongAudio.currentTime = 0;
             }
 
             // get random song name from songs array
-            chosenSong = game.songs[Math.floor(Math.random() * game.songs.length)].song.toLowerCase();
+            game.chosenSong = game.songs[Math.floor(Math.random() * game.songs.length)].song.toLowerCase();
             game.playAgainButton.classList.remove('show');
             console.log('game started');
 
@@ -128,23 +117,14 @@ var game = {
             game.chosenArtistText.textContent = '';
 
             // reset image
-            game.leftImage.src = 'assets/images/billboard-hot-100.jpg';
+        game.leftImage.src = 'assets/images/billboard_hot100.png';
             // reset image width
-            game.leftImage.style.width = '500px';
+            // game.leftImage.style.width = '500px';
 
             // start with blank <li>s for each letter in the song name
-            for (var i = 0; i < chosenSong.length; i++) {
-                // chosenSongText.innerHTML = chosenSongText.innerHTML + '<li id="' + i + '"></li>'
+            for (var i = 0; i < game.chosenSong.length; i++) {
                 // if chosenSong[i]=== ' '
-                if (chosenSong[i] === ' ') {
-                    // var originalUl = game.chosenSongText;
-                    // game.chosenSongText = document.createElement('ul').setAttribute("id", "chosen-word2");
-                    // console.log(document.getElementById('chosen-word').parentNode);
-                    // originalUl.parentNode.insertBefore(game.chosenSongText, originalUl.nextSibling);
-
-
-                    // game.chosenSongText.outerHTML = game.chosenSongText.outerHTML + '<ul id="chosen-word' + i + '"></ul>'
-                    // game.chosenSongText = document.getElementById('chosen-word' + i);
+                if (game.chosenSong[i] === ' ') {
                     game.chosenSongText.innerHTML = game.chosenSongText.innerHTML + '<li id="' + i + '" style="border:none;"></li>'
                 } else {
                     game.chosenSongText.innerHTML = game.chosenSongText.innerHTML + '<li id="' + i + '"></li>'
@@ -162,11 +142,12 @@ var game = {
     },
 
     playSong: function() {
+        // find chosenSong, and play its audio
         for (var i = 0; i < game.songs.length; i++) {
-            if (game.songs[i].song.toLowerCase() === chosenSong) {
-                chosenSongAudio = game.songs[i].audio;
-                console.log(chosenSongAudio);
-                chosenSongAudio.play();
+            if (game.songs[i].song.toLowerCase() === game.chosenSong) {
+                game.chosenSongAudio = game.songs[i].audio;
+                console.log(game.chosenSongAudio);
+                game.chosenSongAudio.play();
             }
         }
     },
@@ -174,7 +155,7 @@ var game = {
     evaluateEnding: function() {
         // check if all letters have been shown/guessed
         var emptyLis = 0;
-        for (var i = 0; i < chosenSong.length; i++) {
+        for (var i = 0; i < game.chosenSong.length; i++) {
             // get length of strings in each <li>
             var content = document.getElementById(i.toString()).textContent;
             var length = document.getElementById(i.toString()).textContent.length;
@@ -186,16 +167,15 @@ var game = {
 
         // find spaces in word & their indexes
         var spaceIndexes = [];
-        for (var i = 0; i < chosenSong.length; i++) {
-            if (chosenSong[i] === ' ') {
+        for (var i = 0; i < game.chosenSong.length; i++) {
+            if (game.chosenSong[i] === ' ') {
                 spaceIndexes.push(i);
             }
         }
 
-        // if # of empty <li>s = number of spaces in word, you win
+        // are all letters guessed? if # of empty <li>s = number of spaces in word, you win
         if (emptyLis === spaceIndexes.length && game.remainingGuesses > 0) {
-            console.log(emptyLis + ' ' + spaceIndexes.length);
-            console.log('all letters guessed, guesses remaining');
+            // console.log(emptyLis + ' ' + spaceIndexes.length);
             game.updateGuesses();
             game.youWin();
         } else {
@@ -209,21 +189,14 @@ var game = {
                 game.youLose();
             }
         }
-
-
-        // check if all letters are guessed
-            // if yes, are there > 0 guesses remaining?
-                // yes = win, no = lose
-            // if no
-
     },
 
-    // if fail - reveal all letters
+    // if fail
     youLose: function () {
         console.log('end game you lost');
-        for (var i = 0; i < chosenSong.length; i++) {
+        for (var i = 0; i < game.chosenSong.length; i++) {
             // reveal all letters
-            document.getElementById(i.toString()).textContent = chosenSong[i];
+            document.getElementById(i.toString()).textContent = game.chosenSong[i];
         }
         // make text red
         game.chosenSongText.style.color = 'red';
@@ -246,34 +219,29 @@ var game = {
 
     // universal end game functions
     endGame: function () {
-        // find chosenSong, and play its audio
-        for (var i = 0; i < game.songs.length; i++) {
-            if (game.songs[i].song.toLowerCase() === chosenSong) {
-                chosenSongAudio = game.songs[i].audio;
-                console.log(chosenSongAudio);
-                chosenSongAudio.play();
-            }
-        }
+        game.playSong();
 
         // find artist that matches the chosenSong
         for (var i = 0; i < game.songs.length; i++) {
-            if (game.songs[i].song.toLowerCase() === chosenSong) {
-                chosenArtist = game.songs[i].artist;
+            if (game.songs[i].song.toLowerCase() === game.chosenSong) {
+                game.chosenArtist = game.songs[i].artist;
             }
         }
         // show artist text
-        game.chosenArtistText.textContent = 'by ' + chosenArtist;
+        game.chosenArtistText.textContent = 'by ' + game.chosenArtist;
 
         // change to artist image
-        game.leftImage.src = 'assets/images/' + chosenSong + '.jpg';
+        game.leftImage.src = 'assets/images/' + game.chosenSong + '.jpg';
         // shrink image width to fit square image
-        game.leftImage.style.width = '350px';
+        // game.leftImage.style.width = '350px';
 
         // show button, restart game when clicked
         game.playAgainButton.classList.add('show');
+        // set focus on button, so enter will go to next song guess
+        game.playAgainButton.focus();
+        console.log("button class should be added");
         game.playAgainButton.addEventListener('click', game.startGame);
     }
-    
 
 } // end of game variable
 
@@ -303,12 +271,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                 // when a correct letter is guessed, reveal it
-                if (chosenSong.includes(letter)) {
+                if (game.chosenSong.includes(letter)) {
                     // find index of ALL OCCURRENCES of the letter in the word
-                    for (i = 0; i < chosenSong.length; i++) {
-                        if (chosenSong[i] === letter)
+                    for (i = 0; i < game.chosenSong.length; i++) {
+                        if (game.chosenSong[i] === letter)
                             // reveal letter on page
-                            document.getElementById(i.toString()).textContent = chosenSong[i]; // reveal letter in word
+                            document.getElementById(i.toString()).textContent = game.chosenSong[i]; // reveal letter in word
                     }
                 }
 

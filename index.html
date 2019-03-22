@@ -8,10 +8,10 @@
     <!-- BOOTSTRAP -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <!-- Poppins Font -->
+    <!-- Poppins Font -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet">
     <!-- Tillana Font -->
-    <link href="https://fonts.googleapis.com/css?family=Tillana:400,600,700" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Tillana:400,600,700" rel="stylesheet"> -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 <body>
@@ -26,9 +26,19 @@
         </div>
 
         <!-- Main Content -->
-        <div class="row text-center">
-            <div class="col-xl-6 col-lg-6 col-md-5 align-self-center">
-                <img src="assets/images/billboard-hot-100.jpg" class="img-fluid" alt="" id="left-image">
+        <div class="row text-center mt-1">
+            <div class="col-xl-6 col-lg-6 col-md-5 align-self-center mb-4">
+                <div class="row">
+                    <div class="col-md-12">
+                        <img src="assets/images/billboard_hot100.png" class="img-fluid" alt="" id="left-image">
+                    </div>
+                </div>
+                <!-- <div class="row mt-3">
+                    <div class="col-md-12">
+                        <input class="btn btn-primary" type="reset" value="Play Again?" id="play-again">
+                    </div>
+                </div> -->
+                
             </div>
 
             <div class="col-xl-6 col-lg-6 col-md-7 align-self-center">
@@ -48,7 +58,7 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 px-0">
                         <!-- CURRENT SONG -->
                         <p><strong>CURRENT SONG TITLE</strong></p>
-                        <ul id="chosen-word">
+                        <ul id="chosen-song">
                         
                         </ul>
                         <p id="artist"></p>
@@ -63,7 +73,7 @@
 
         <!-- Last Row -->
         <div class="row m-5">
-            <input class="btn btn-primary" type="reset" value="Play Again?" id="play-again">
+            <input class="btn btn-primary" type="reset" value="Play Again?" id="play-again" autofocus>
         </div>
     </div>
 
