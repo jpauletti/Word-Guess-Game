@@ -117,9 +117,8 @@ var game = {
             game.chosenArtistText.textContent = '';
 
             // reset image
-        game.leftImage.src = 'assets/images/billboard_hot100.png';
+            game.leftImage.src = 'assets/images/billboard_hot100.png';
             // reset image width
-            // game.leftImage.style.width = '500px';
 
             // start with blank <li>s for each letter in the song name
             for (var i = 0; i < game.chosenSong.length; i++) {
@@ -233,7 +232,6 @@ var game = {
         // change to artist image
         game.leftImage.src = 'assets/images/' + game.chosenSong + '.jpg';
         // shrink image width to fit square image
-        // game.leftImage.style.width = '350px';
 
         // show button, restart game when clicked
         game.playAgainButton.classList.add('show');

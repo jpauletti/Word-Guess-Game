@@ -5,7 +5,6 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
     text-align: center;
     font-size: 60px;
-    /* font-weight: bold; */
     line-height: 1.5;
     color: white;
     text-transform: lowercase;
@@ -22,7 +21,7 @@ img {
 
 
 .title {
-    padding: 5px 15px 15px;;
+    padding: 5px 15px 15px;
     margin: 20px;
 }
 
@@ -60,12 +59,16 @@ input {
 }
 
 #play-again {
-    /* position: absolute; */
-    /* top: -120px; */
-    /* left: 0; */
     display: none;
     opacity: 0;
     transition: all 0.25s ease-in-out;
+    background: #01b1e6;
+    border-color: #01b1e6;
+}
+
+#play-again:hover {
+    background: #007bff;
+    border-color: #007bff;
 }
 
 .show {
@@ -81,6 +84,17 @@ input {
 }
 
 
+
+@media screen and (max-width: 768px) {
+    .m-5 {
+        margin: 1rem!important;
+    }
+
+    .title {
+        padding: 0;
+        margin-bottom: 0;
+    }
+}
 
 
 @media screen and (max-width: 480px) {
@@ -99,13 +113,11 @@ input {
 
 }
 
-@media screen and (max-width: 768px) {
-    .m-5 {
-        margin: 1rem!important;
-    }
 
-    .title {
-        padding: 0;
-        margin-bottom: 0;
+@media screen and (max-width: 450px) {
+    h1 {
+        font-size: 50px;
+        line-height: 1.5;
+        letter-spacing: -4px;
     }
 }
