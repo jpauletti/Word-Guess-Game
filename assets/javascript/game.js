@@ -74,7 +74,7 @@ var game = {
     chosenSongAudio: "",
     lettersGuessed: [],
     wins: 0,
-    remainingGuesses: undefined,
+    remainingGuesses: null,
 
     // DOM variables
     chosenSongText: document.getElementById('chosen-song'),
@@ -97,7 +97,7 @@ var game = {
             // get random song name from songs array
             game.chosenSong = game.songs[Math.floor(Math.random() * game.songs.length)].song.toLowerCase();
             game.playAgainButton.classList.remove('show');
-            console.log('game started');
+            // console.log('game started');
 
             // reset guesses
             game.remainingGuesses = 14;
@@ -145,7 +145,7 @@ var game = {
         for (var i = 0; i < game.songs.length; i++) {
             if (game.songs[i].song.toLowerCase() === game.chosenSong) {
                 game.chosenSongAudio = game.songs[i].audio;
-                console.log(game.chosenSongAudio);
+                // console.log(game.chosenSongAudio);
                 game.chosenSongAudio.play();
             }
         }
@@ -156,7 +156,7 @@ var game = {
         var emptyLis = 0;
         for (var i = 0; i < game.chosenSong.length; i++) {
             // get length of strings in each <li>
-            var content = document.getElementById(i.toString()).textContent;
+            // var content = document.getElementById(i.toString()).textContent;
             var length = document.getElementById(i.toString()).textContent.length;
             //if empty, 
             if (length === 0) {
@@ -181,7 +181,7 @@ var game = {
             if (game.remainingGuesses > 1) {
                 game.updateGuesses();
             } else if (game.remainingGuesses === 1) {
-                console.log('guess = 1');
+                // console.log('guess = 1');
                 game.updateGuesses();
                 game.youLose();
             } else if (game.remainingGuesses === 0) {
@@ -192,7 +192,7 @@ var game = {
 
     // if fail
     youLose: function () {
-        console.log('end game you lost');
+        // console.log('you lost');
         for (var i = 0; i < game.chosenSong.length; i++) {
             // reveal all letters
             document.getElementById(i.toString()).textContent = game.chosenSong[i];
@@ -205,7 +205,7 @@ var game = {
 
     // if win
     youWin: function () {
-        console.log('you win');
+        // console.log('you win');
         // add 1 to wins
         game.wins = game.wins + 1;
         // update wins on page
@@ -237,7 +237,6 @@ var game = {
         game.playAgainButton.classList.add('show');
         // set focus on button, so pressing enter will go to next song guess
         game.playAgainButton.focus();
-        console.log("button class should be added");
         game.playAgainButton.addEventListener('click', game.startGame);
     }
 
@@ -255,7 +254,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.onkeyup = function (event) {
 
             var letter = event.key.toLowerCase();
-            console.log(letter);
+            // console.log(letter);
 
             // if it's a valid letter, that hasn't already been guessed
             if (game.validGuesses.indexOf(letter) > -1 && game.lettersGuessed.indexOf(letter) === -1) {
