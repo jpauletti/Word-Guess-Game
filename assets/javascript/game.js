@@ -74,7 +74,7 @@ var game = {
     chosenSongAudio: "",
     lettersGuessed: [],
     wins: 0,
-    remainingGuesses: 12,
+    remainingGuesses: undefined,
 
     // DOM variables
     chosenSongText: document.getElementById('chosen-song'),
@@ -100,7 +100,7 @@ var game = {
             console.log('game started');
 
             // reset guesses
-            game.remainingGuesses = 12;
+            game.remainingGuesses = 14;
             // show new guesses left on page
             game.remainingGuessesText.textContent = game.remainingGuesses;
             // reset letters guessed
@@ -235,7 +235,7 @@ var game = {
 
         // show button, restart game when clicked
         game.playAgainButton.classList.add('show');
-        // set focus on button, so enter will go to next song guess
+        // set focus on button, so pressing enter will go to next song guess
         game.playAgainButton.focus();
         console.log("button class should be added");
         game.playAgainButton.addEventListener('click', game.startGame);
