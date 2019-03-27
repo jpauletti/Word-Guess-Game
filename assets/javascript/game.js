@@ -1,6 +1,3 @@
-// var chosenSong;
-// var chosenArtist;
-// var chosenSongAudio;
 
 var game = {
     validGuesses: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
@@ -137,7 +134,6 @@ var game = {
         game.remainingGuesses = game.remainingGuesses - 1;
         // show new guesses left on page
         game.remainingGuessesText.textContent = game.remainingGuesses;
-
     },
 
     playSong: function() {
