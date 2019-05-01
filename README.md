@@ -8,4 +8,6 @@ Each time you guess a letter correctly, it will appear in the word until you've 
 
 When you guess the song correctly (or run out of guesses), the song will start playing.
 
+[See it for yourself!](https://jpauletti.github.io/Word-Guess-Game/)
+
 ![Game Screenshot](assets/images/game-screenshot.png?)
